@@ -1,0 +1,71 @@
+header {
+	height:40px; width: 1263px;
+	border: 1px solid black;
+	font-weight: bold;
+	font-size: 36px;
+	text-align: center;
+	background:#6B2400;
+
+}
+
+button {
+	height: 25px;
+	width: 50px;
+}
+
+#game-container {
+	height:100%; width: 100%;
+	border: 1px solid black;
+	background-image: url(https://mxg.cdnbf.net/mexchangeblackjack/turbo/assets/gameView/tableBackground.png?v1.26-210);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 1200px;
+	background-color: #6B2400;
+}
+
+#bet-container {
+	bottom:75px;
+	right:0px;
+	border: 1px solid white;
+	position:absolute;
+	margin-right: 100px;
+	color:gold;
+	text-align: center;
+}
+
+.card {
+	height: 100px; width: 90px;
+	border:1px solid black;
+	display: inline-block;
+}
+
+#card1 {
+	display:inline-block;
+}
+
+#card2 {
+	display:inline-block;
+}
+
+#dealer-cards {
+	height: 100px; width: 600px;
+	border: 1px solid white;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top: 50px;
+}
+
+#player-cards {
+	height: 100px; width: 600px;
+	border: 1px solid white;
+	margin-left: auto;
+	margin-right:auto;
+	margin-top: 200px;
+}
+
+#stand {
+	height: 100px; width:100px;
+	border: 1px solid white;
+	margin-left: auto;
+	margin-right: auto;
+}
