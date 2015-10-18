@@ -54,7 +54,6 @@ startGame();
 var dealcomputer = function() {
 	for (i = 0; i < 2; i++){
 	computercards.push(deck[Math.floor(Math.random() * deck.length)]);
-	// computercards.push() = deck[Math.floor(Math.random() * deck.length)];
 }
 }
 
@@ -64,7 +63,8 @@ var dealcomputer = function() {
 
 var dealplayer = function() {
 	for (i = 0; i < 2; i++) {
-		playercards.pop(deck[Math.floor(Math.random() * deck.length)]);
+
+		playercards.push(deck[Math.floor(Math.random() * deck.length)]);
 	}
 }
 // dealplayer();
@@ -74,8 +74,7 @@ var dealplayer = function() {
 
 var hit = function() {
 	$('#hit').click(function(){
-		$('#player-cards').append("<div></div>");
-
+		playercards.push(deck[Math.floor(Math.random() * deck.length)]);
 
 		
 
