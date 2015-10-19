@@ -1,4 +1,5 @@
 
+// 
 var total = 1000;
 var bankroll = 1000;
 var betAmount = 0;
