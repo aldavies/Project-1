@@ -1,7 +1,8 @@
 
 // 
+var betAmount = 0;
 var total = 1000;
-var bankroll = 1000;
+// var bankroll = 1000;
 var betAmount = 0;
 var playercards = [];
 var computercards = [];
@@ -28,25 +29,28 @@ suit = ["hearts", "diamonds", "clubs", "spades", "hearts", "diamonds", "clubs", 
 // deckarray();
 
 
+// ==============================================
+					// bankroll
 
-$('#bankroll').text(bankroll);
+
+// var trackBankroll = function(){
+// 	 bankroll -= betAmount;
+// 	 // $('#bankroll').text(bankroll);
+// }
+// trackBankroll();
+
+
+$('#reset').click(function(){
+	window.location.reload();
+});
+// $('#bankroll').html(bankroll);
 $('#bet-button').click(function(){
-	betAmount = parseInt($("#bet-input").val());
-	trackBankroll();
+	// betAmount = parseInt($("#bet-input").val());
+	// trackBankroll();
 	startGame();
 });
-$('#stand').click(function(){
-		while(getHandValue(computercards) < 17){
-			compCard = Math.floor(Math.random() * deck.length);
-			computercards.push(deck[compCard]);
-			deck.splice(compCard, 1);
-			$('#card' + computercards.length).text(facevalues[computercards[computercards.length - 1]]);
-			if (isBust(computercards)){
-				alert('Dealers busts!');
-			}
-		}
-	});
 
+// Is it a bust?
 var isBust = function(hand){
 	if( getHandValue(hand) > 21){
 		return true;
@@ -63,6 +67,7 @@ var startGame = function(){
 	dealcomputer();
 	dealplayer();
 	hit();
+	
 
 	
 }
@@ -98,28 +103,16 @@ var hit = function() {
 	  	card  = Math.floor(Math.random() * deck.length);
 	  	playercards.push(deck[card]);
 		deck.splice(card,1);
-		$('#card' + (5 + playercards.length)).text(facevalues[playercards[playercards.length - 1]]);
-		alert(getHandValue(playercards));
+		$('#card' + (5 + playercards.length)).html(facevalues[playercards[playercards.length - 1]]);
 
-			if (isBust(playercards)){
-				alert('Bust!');
-			}
+		if (getHandValue(playercards) > 21)
+		alert("Bust!");
+
+			
 
 		
 	})
 };
-
-
-// ==============================================
-					// bankroll
-
-
-var trackBankroll = function(){
-	 bankroll -= betAmount;
-	 $('#bankroll').text(bankroll);
-}
-trackBankroll();
-
 
 
 // var didPlayerWin = function() {
@@ -128,6 +121,25 @@ trackBankroll();
 // 		suit = suits[playercard[i]];
 // 	}
 // }
+
+var winGame = function(){
+	if (!isBust(playercards) && (getHandValue(playercards) > getHandValue(computercards)) || isBust(computercards)){
+		alert('player wins');
+		return bankroll = betAmount * 2;
+	}
+};
+
+var loseGame = function(){
+	if (!isBust(computercards) && (getHandValue(playercards) < getHandValue(computercards)) || isBust(playercards)){
+		alert('You loser');
+	}
+};
+
+var tiedGame = function(){
+	if (getHandValue(playercards) === getHandValue(computercards)){
+		alert('tied');
+	}
+}
 
 var getHandValue = function(hand){
 	var sum = 0;
@@ -139,19 +151,17 @@ var getHandValue = function(hand){
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$('#stand').click(function(){
+		while(getHandValue(computercards) < 17){
+			compCard = Math.floor(Math.random() * deck.length);
+			computercards.push(deck[compCard]);
+			deck.splice(compCard, 1);
+			$('#card' + computercards.length).text(facevalues[computercards[computercards.length - 1]]);
+			if (!isBust(playercards) && isBust(computercards)){
+				alert('Dealers busts!');
+			}
+		}
+		winGame();
+		loseGame();
+		tiedGame();
+	});
